@@ -4,7 +4,12 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
-import com.hibernate.tutorial.entity.Employee;
+import com.hibernate.tutorial.entity.Doctor;
+import com.hibernate.tutorial.ui.JFrameMain;
+
+import java.util.List;
+import javax.swing.JFrame;
+
 
 import org.hibernate.Transaction;
 
@@ -21,12 +26,20 @@ public class MainClass {
 
 		Transaction tx = session.beginTransaction();
 		
-		Employee emp = new Employee();
-		emp.setId(new Long(1));
-		emp.setEmployeeName("Rahul Wagh");
-		emp.setEmployeeAddress("Indore, India");
-		session.save(emp);
+		//Doctor emp = new Doctor();
+		//emp.setId(new Long(1));
+		//emp.setFio("Rahul Wagh");
+		//emp.setDr(new Date());
+		//session.save(emp);
+                 final List<Doctor> list = session.createCriteria(Doctor.class).list();
 		tx.commit();
 		session.close();
+                
+              javax.swing.SwingUtilities.invokeLater(new Runnable() {
+            public void run() {
+                JFrame.setDefaultLookAndFeelDecorated(true);
+                new JFrameMain().listDoctors=list;
+            }
+        });   
 	}
 }
