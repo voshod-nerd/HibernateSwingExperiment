@@ -4,6 +4,7 @@
     <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
     <class>com.hibernate.tutorial.entity.Sertif</class>
     <class>com.hibernate.tutorial.entity.Doctor</class>
+    <class>com.hibernate.tutorial.entity.SpisokVrach</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/hibernate5?zeroDateTimeBehavior=convertToNull"/>
       <property name="javax.persistence.jdbc.user" value="root"/>

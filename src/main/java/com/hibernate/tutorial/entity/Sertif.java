@@ -24,34 +24,45 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author Олег
+ * @author Талалаев
  */
 @Entity
 @Table(name = "sertif")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Sertif.findAll", query = "SELECT s FROM Sertif s")
-    , @NamedQuery(name = "Sertif.findById", query = "SELECT s FROM Sertif s WHERE s.id = :id")
-    , @NamedQuery(name = "Sertif.findBySerName", query = "SELECT s FROM Sertif s WHERE s.serName = :serName")
-    , @NamedQuery(name = "Sertif.findByDateadd", query = "SELECT s FROM Sertif s WHERE s.dateadd = :dateadd")})
+    @NamedQuery(name = "Sertif.findAll", query = "SELECT s FROM Sertif s"),
+    @NamedQuery(name = "Sertif.findByNSert", query = "SELECT s FROM Sertif s WHERE s.nSert = :nSert"),
+    @NamedQuery(name = "Sertif.findByRegNum", query = "SELECT s FROM Sertif s WHERE s.regNum = :regNum"),
+    @NamedQuery(name = "Sertif.findByDateEnd", query = "SELECT s FROM Sertif s WHERE s.dateEnd = :dateEnd"),
+    @NamedQuery(name = "Sertif.findByPrvs", query = "SELECT s FROM Sertif s WHERE s.prvs = :prvs"),
+    @NamedQuery(name = "Sertif.findByPrvsS", query = "SELECT s FROM Sertif s WHERE s.prvsS = :prvsS"),
+    @NamedQuery(name = "Sertif.findByDateadd", query = "SELECT s FROM Sertif s WHERE s.dateadd = :dateadd"),
+    @NamedQuery(name = "Sertif.findById", query = "SELECT s FROM Sertif s WHERE s.id = :id")})
 public class Sertif implements Serializable {
 
     private static final long serialVersionUID = 1L;
+    @Column(name = "N_SERT")
+    private String nSert;
+    @Column(name = "REG_NUM")
+    private String regNum;
+    @Column(name = "DATE_END")
+    @Temporal(TemporalType.DATE)
+    private Date dateEnd;
+    @Column(name = "PRVS")
+    private Integer prvs;
+    @Column(name = "PRVS_S")
+    private String prvsS;
+    @Column(name = "DATEADD")
+    @Temporal(TemporalType.DATE)
+    private Date dateadd;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "id")
     private Integer id;
-    @Basic(optional = false)
-    @Column(name = "ser_name")
-    private String serName;
-    @Basic(optional = false)
-    @Column(name = "dateadd")
-    @Temporal(TemporalType.DATE)
-    private Date dateadd;
-    @JoinColumn(name = "iddokt", referencedColumnName = "id")
-    @ManyToOne(optional = false)
-    private Doctor iddokt;
+    @JoinColumn(name = "IDDOKT", referencedColumnName = "IDDOKT")
+    @ManyToOne
+    private SpisokVrach iddokt;
 
     public Sertif() {
     }
@@ -60,9 +71,51 @@ public class Sertif implements Serializable {
         this.id = id;
     }
 
-    public Sertif(Integer id, String serName, Date dateadd) {
-        this.id = id;
-        this.serName = serName;
+    public String getNSert() {
+        return nSert;
+    }
+
+    public void setNSert(String nSert) {
+        this.nSert = nSert;
+    }
+
+    public String getRegNum() {
+        return regNum;
+    }
+
+    public void setRegNum(String regNum) {
+        this.regNum = regNum;
+    }
+
+    public Date getDateEnd() {
+        return dateEnd;
+    }
+
+    public void setDateEnd(Date dateEnd) {
+        this.dateEnd = dateEnd;
+    }
+
+    public Integer getPrvs() {
+        return prvs;
+    }
+
+    public void setPrvs(Integer prvs) {
+        this.prvs = prvs;
+    }
+
+    public String getPrvsS() {
+        return prvsS;
+    }
+
+    public void setPrvsS(String prvsS) {
+        this.prvsS = prvsS;
+    }
+
+    public Date getDateadd() {
+        return dateadd;
+    }
+
+    public void setDateadd(Date dateadd) {
         this.dateadd = dateadd;
     }
 
@@ -74,27 +127,11 @@ public class Sertif implements Serializable {
         this.id = id;
     }
 
-    public String getSerName() {
-        return serName;
-    }
-
-    public void setSerName(String serName) {
-        this.serName = serName;
-    }
-
-    public Date getDateadd() {
-        return dateadd;
-    }
-
-    public void setDateadd(Date dateadd) {
-        this.dateadd = dateadd;
-    }
-
-    public Doctor getIddokt() {
+    public SpisokVrach getIddokt() {
         return iddokt;
     }
 
-    public void setIddokt(Doctor iddokt) {
+    public void setIddokt(SpisokVrach iddokt) {
         this.iddokt = iddokt;
     }
 
