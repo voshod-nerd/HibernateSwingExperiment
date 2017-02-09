@@ -1,5 +1,6 @@
 package com.hibernate.tutorial.mainclass;
 
+import com.hibernate.tutorial.entity.Sertif;
 import com.hibernate.tutorial.entity.SpisokVrach;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -13,7 +14,19 @@ import org.hibernate.Transaction;
 
 public class HibernateMain {
     
+      
     
+       public List<Sertif> getAllSertif() {
+       SessionFactory sessionFactory;
+		sessionFactory = new Configuration().configure() // configures settings from hibernate.cfg.xml
+		.buildSessionFactory();
+		Session session = sessionFactory.openSession();
+		Transaction tx = session.beginTransaction();
+                List<Sertif> list = session.createCriteria(Sertif.class).list();
+		tx.commit();
+		session.close();
+                return list;  
+       }   
        public List<SpisokVrach> getAllSpisokVrach() {
       
 		SessionFactory sessionFactory;
@@ -21,7 +34,6 @@ public class HibernateMain {
 		.buildSessionFactory();
 		Session session = sessionFactory.openSession();
 		Transaction tx = session.beginTransaction();
-		
 		//Doctor emp = new Doctor();
 		//emp.setId(new Long(1));
 		//emp.setFio("Rahul Wagh");
@@ -30,9 +42,6 @@ public class HibernateMain {
                 List<SpisokVrach> list = session.createCriteria(SpisokVrach.class).list();
 		tx.commit();
 		session.close();
-                
-               
-          
                 return list;  
                 
                 

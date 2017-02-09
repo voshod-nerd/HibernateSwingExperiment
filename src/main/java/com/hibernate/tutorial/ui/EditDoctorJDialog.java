@@ -5,59 +5,22 @@
  */
 package com.hibernate.tutorial.ui;
 
-import com.hibernate.tutorial.mainclass.HibernateMain;
-import com.hibernate.tutorial.model.SertifTableModel;
-import com.hibernate.tutorial.model.SpisokVrachTableModel;
-import com.hibernate.tutorial.ui.listener.JExampleMouseTableListener;
-import java.awt.Component;
-import java.awt.Dimension;
-import java.awt.Point;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import javax.swing.Box;
-import javax.swing.BoxLayout;
-import javax.swing.JScrollPane;
-import javax.swing.JTable;
-import javax.swing.table.TableModel;
-
 /**
  *
  * @author Талалаев
  */
-public class MainFrame extends javax.swing.JFrame {
-
-    HibernateMain hiber;
-    private javax.swing.JTable tblSpisokVrach;
-    private javax.swing.JTable tblSertif;
+public class EditDoctorJDialog extends javax.swing.JDialog {
 
     /**
-     * Creates new form MainFrame
+     * Creates new form EditDoctorJDialog
      */
-    public MainFrame() {
-
-        hiber = new HibernateMain();
-        TableModel model1 = new SpisokVrachTableModel(hiber.getAllSpisokVrach());
-        tblSpisokVrach = new JTable(model1);
-        TableModel model2 = new SertifTableModel(hiber.getAllSertif());
-        tblSertif = new JTable(model2);
-        
-
-        tblSpisokVrach.setSize(new Dimension(900, 150));
-        tblSertif.setSize(new Dimension(900, 150));
-        
-        
-        tblSpisokVrach.addMouseListener(new JExampleMouseTableListener(this));
-
-        Box contents = new Box(BoxLayout.Y_AXIS);
-        contents.add(new JScrollPane(tblSpisokVrach));
-        contents.add(new JScrollPane(tblSertif));
-
-        this.getContentPane().add(contents);
-        setPreferredSize(new Dimension(910, 700));
-        this.pack();
-        this.setDefaultLookAndFeelDecorated(true);
-
+    public EditDoctorJDialog(java.awt.Frame parent, boolean modal) {
+        super(parent, modal);
         initComponents();
+    }
+
+    EditDoctorJDialog() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     /**
@@ -69,13 +32,13 @@ public class MainFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGap(0, 609, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -102,20 +65,27 @@ public class MainFrame extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(MainFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EditDoctorJDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(MainFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EditDoctorJDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(MainFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EditDoctorJDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(MainFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EditDoctorJDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
-        /* Create and display the form */
+        /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new MainFrame().setVisible(true);
+                EditDoctorJDialog dialog = new EditDoctorJDialog(new javax.swing.JFrame(), true);
+                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
+                    @Override
+                    public void windowClosing(java.awt.event.WindowEvent e) {
+                        System.exit(0);
+                    }
+                });
+                dialog.setVisible(true);
             }
         });
     }

@@ -22,6 +22,12 @@ public class SertifTableModel implements TableModel {
     private Set<TableModelListener> listeners = new HashSet<TableModelListener>();
 
     private List<Sertif> listSertif;
+    
+    
+     public SertifTableModel(List<Sertif> listSertif) {
+        super();
+        this.listSertif = listSertif;
+    }
 
     public int getRowCount() {
         return listSertif.size();
@@ -82,7 +88,6 @@ public class SertifTableModel implements TableModel {
 
     public Object getValueAt(int rowIndex, int columnIndex) {
        Sertif sertif = listSertif.get(rowIndex);
-
         switch (columnIndex) {
             case 0:
                 return sertif.getNSert();

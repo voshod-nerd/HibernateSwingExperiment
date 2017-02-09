@@ -51,19 +51,19 @@ public class SpisokVrachTableModel implements TableModel {
             case 3:
                 return "id_otd";
             case 4:
-                return "fam";
+                return "Фамилия";
             case 5:
-                return "im";
+                return "Имя";
             case 6:
-                return "ot";
+                return "Отчество";
             case 7:
                 return "dokt";
             case 8:
-                return "prvs";
+                return "Специалоность";
             case 9:
-                return "date_vn";
+                return "Дата внесения";
             case 10:
-                return "date_uv";
+                return "Дата увольнения";
         }
         return "";
     }
