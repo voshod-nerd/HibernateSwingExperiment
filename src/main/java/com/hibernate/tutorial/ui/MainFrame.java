@@ -29,13 +29,14 @@ public class MainFrame extends javax.swing.JFrame {
     HibernateMain hiber;
     private javax.swing.JTable tblSpisokVrach;
     private javax.swing.JTable tblSertif;
-
+    private String[] args;
     /**
      * Creates new form MainFrame
      */
-    public MainFrame() {
-
-        hiber = new HibernateMain();
+    
+    
+    public void init() {
+    hiber = new HibernateMain();
         TableModel model1 = new SpisokVrachTableModel(hiber.getAllSpisokVrach());
         tblSpisokVrach = new JTable(model1);
         TableModel model2 = new SertifTableModel(hiber.getAllSertif());
@@ -56,8 +57,17 @@ public class MainFrame extends javax.swing.JFrame {
         setPreferredSize(new Dimension(910, 700));
         this.pack();
         this.setDefaultLookAndFeelDecorated(true);
-
-        initComponents();
+    
+    
+    }
+    
+    public MainFrame() {
+              
+    }
+    
+    
+    public void setArgs(String[] args) {
+        this.args = args;
     }
 
     /**
