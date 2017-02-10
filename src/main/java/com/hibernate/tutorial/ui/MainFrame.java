@@ -6,8 +6,8 @@
 package com.hibernate.tutorial.ui;
 
 import com.hibernate.tutorial.mainclass.HibernateMain;
-import com.hibernate.tutorial.model.SertifTableModel;
-import com.hibernate.tutorial.model.SpisokVrachTableModel;
+import com.hibernate.tutorial.ui.model.SertifTableModel;
+import com.hibernate.tutorial.ui.model.SpisokVrachTableModel;
 import com.hibernate.tutorial.ui.listener.JExampleMouseTableListener;
 import java.awt.Dimension;
 import javax.swing.Box;
@@ -35,7 +35,7 @@ public class MainFrame extends javax.swing.JFrame {
     hiber = new HibernateMain();
         TableModel model1 = new SpisokVrachTableModel(hiber.getAllSpisokVrach());
         tblSpisokVrach = new JTable(model1);
-        TableModel model2 = new SertifTableModel(hiber.getAllSertif());
+        TableModel model2 = new SertifTableModel(hiber.getAll());
         tblSertif = new JTable(model2);
         
 

@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.hibernate.tutorial.model;
+package com.hibernate.tutorial.ui.model;
 
 import com.hibernate.tutorial.entity.Sertif;
 import java.util.Date;
