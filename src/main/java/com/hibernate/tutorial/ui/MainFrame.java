@@ -9,11 +9,7 @@ import com.hibernate.tutorial.mainclass.HibernateMain;
 import com.hibernate.tutorial.model.SertifTableModel;
 import com.hibernate.tutorial.model.SpisokVrachTableModel;
 import com.hibernate.tutorial.ui.listener.JExampleMouseTableListener;
-import java.awt.Component;
 import java.awt.Dimension;
-import java.awt.Point;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JScrollPane;
@@ -57,7 +53,7 @@ public class MainFrame extends javax.swing.JFrame {
         setPreferredSize(new Dimension(910, 700));
         this.pack();
         this.setDefaultLookAndFeelDecorated(true);
-    
+        this.setVisible(true);
     
     }
     
@@ -98,12 +94,9 @@ public class MainFrame extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
+    /*
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
+      
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
@@ -120,16 +113,15 @@ public class MainFrame extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(MainFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
-
-        /* Create and display the form */
+     
+       
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new MainFrame().setVisible(true);
             }
         });
     }
-
+*/
     // Variables declaration - do not modify//GEN-BEGIN:variables
     // End of variables declaration//GEN-END:variables
 }
