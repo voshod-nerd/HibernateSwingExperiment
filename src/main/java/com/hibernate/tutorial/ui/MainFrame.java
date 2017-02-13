@@ -15,13 +15,17 @@ import javax.swing.BoxLayout;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.TableModel;
+import org.springframework.beans.factory.annotation.Autowired;
 
 /**
  *
  * @author Талалаев
  */
-public class MainFrame extends javax.swing.JFrame {
 
+
+public class MainFrame extends javax.swing.JFrame {
+   
+    @Autowired
     HibernateMain hiber;
     private javax.swing.JTable tblSpisokVrach;
     private javax.swing.JTable tblSertif;
@@ -32,9 +36,9 @@ public class MainFrame extends javax.swing.JFrame {
     
     
     public void init() {
-    hiber = new HibernateMain();
-        TableModel model1 = new SpisokVrachTableModel(hiber.getAllSpisokVrach());
-        tblSpisokVrach = new JTable(model1);
+    //hiber = new HibernateMain();
+        //TableModel model1 = new SpisokVrachTableModel(hiber.getAllSpisokVrach());
+        //tblSpisokVrach = new JTable(model1);
         TableModel model2 = new SertifTableModel(hiber.getAll());
         tblSertif = new JTable(model2);
         

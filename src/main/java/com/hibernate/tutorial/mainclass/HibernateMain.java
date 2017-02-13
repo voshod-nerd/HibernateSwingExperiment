@@ -12,15 +12,17 @@ import java.util.List;
 import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+@Service
+@Transactional
 public class HibernateMain {
 
+    @Autowired
     private SertifDAO sertifRep;
 
-    @Autowired(required = false)
-    public void setSertifRepository(SertifDAO dao) {
-        this.sertifRep = dao;
-    }
-
+   
     public List<Sertif> getAll() {
         return sertifRep.getAllSertif();
     }
@@ -74,4 +76,7 @@ public class HibernateMain {
         session.close();
 
     }
+
+  
+    
 }

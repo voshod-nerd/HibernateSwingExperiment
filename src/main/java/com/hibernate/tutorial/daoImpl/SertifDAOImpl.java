@@ -8,37 +8,51 @@ package com.hibernate.tutorial.daoImpl;
 import com.hibernate.tutorial.dao.SertifDAO;
 import com.hibernate.tutorial.entity.Sertif;
 import java.util.List;
-import org.springframework.orm.hibernate4.support.HibernateDaoSupport;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Service;
 
 import org.springframework.transaction.annotation.Transactional;
-
 
 /**
  *
  * @author Талалаев
  */
-@Repository
-@Transactional
-public class SertifDAOImpl extends HibernateDaoSupport implements SertifDAO {
+
+@Repository("SertifDao")
+public class SertifDAOImpl implements SertifDAO {
     
+    @Autowired
+    private SessionFactory sessionFactory;
+
     
-    
+
     public void save(Sertif value) {
-       getHibernateTemplate().save(value);
+        Session session = this.getSessionFactory().getCurrentSession();
+		session.persist(value);
     }
 
     public void update(Sertif value) {
-        getHibernateTemplate().update(value);
+       Session session = this.getSessionFactory().getCurrentSession();
+		session.update(value);
     }
 
     public void delete(Sertif value) {
-       getHibernateTemplate().delete(value);
+       Session session = this.getSessionFactory().getCurrentSession();
+		Sertif p = (Sertif) session.load(Sertif.class, value.getId());
+		if(null != p){
+			session.delete(p);
+		}
     }
 
     public List<Sertif> getAllSertif() {
-      List<Sertif> result = (List<Sertif>) getHibernateTemplate().find("from Sertif");
-       return result;
+       Session session = this.getSessionFactory().getCurrentSession();
+		List<Sertif> listSertif = session.createQuery("from Sertif").list();
+		
+		return listSertif;
     }
 
     public Sertif create(Sertif value) {
@@ -48,5 +62,19 @@ public class SertifDAOImpl extends HibernateDaoSupport implements SertifDAO {
     public Sertif findByIddokt(int value) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
+
+    /**
+     * @return the sessionFactory
+     */
+    public SessionFactory getSessionFactory() {
+        return sessionFactory;
+    }
+
+    /**
+     * @param sessionFactory the sessionFactory to set
+     */
+    public void setSessionFactory(SessionFactory sessionFactory) {
+        this.sessionFactory = sessionFactory;
+    }
+
 }
