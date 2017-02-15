@@ -6,6 +6,7 @@
 package com.hibernate.tutorial.config;
 
 
+import com.hibernate.tutorial.mainclass.HibernateMain;
 import com.hibernate.tutorial.ui.MainFrame;
 import java.util.Properties;
 import javax.sql.DataSource;
@@ -18,8 +19,8 @@ import org.springframework.context.annotation.PropertySource;
 import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.core.env.Environment;
-import org.springframework.orm.hibernate4.HibernateTransactionManager;
-import org.springframework.orm.hibernate4.LocalSessionFactoryBean;
+import org.springframework.orm.hibernate5.HibernateTransactionManager;
+import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 /**
@@ -41,6 +42,12 @@ public class SpringContext {
     public MainFrame createMainFrame() {
         return new MainFrame();
     }
+    
+    @Bean(name = "HibernateMain")
+    public HibernateMain createHibernateMain() {
+        return new HibernateMain();
+    }
+    
 
     @Bean
     public LocalSessionFactoryBean sessionFactory() {
@@ -48,7 +55,6 @@ public class SpringContext {
         sessionFactory.setDataSource(dataSource());
         sessionFactory.setPackagesToScan(new String[]{"com.hibernate.tutorial"});
         sessionFactory.setHibernateProperties(hibernateProperties());
-
         return sessionFactory;
     }
 
@@ -58,7 +64,7 @@ public class SpringContext {
         dataSource.setDriverClassName(environment.getRequiredProperty("jdbc.driverClassName"));
         dataSource.setUrl(environment.getRequiredProperty("jdbc.url"));
         dataSource.setUsername(environment.getRequiredProperty("jdbc.username"));
-        dataSource.setPassword(environment.getRequiredProperty("jdbc.password"));
+        dataSource.setPassword("");
         return dataSource;
     }
 

@@ -5,10 +5,7 @@
  */
 package com.hibernate.tutorial.app;
 
-import com.hibernate.tutorial.config.SpringContext;
 import com.hibernate.tutorial.ui.MainFrame;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 /**
  *
@@ -16,9 +13,10 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
  */
 public class Application {
     public static void main(String[] args) {
-        ApplicationContext context = new AnnotationConfigApplicationContext(SpringContext.class);
-        MainFrame mainFrame = (MainFrame) context.getBean("mainFrame");
-        mainFrame.setArgs(args);
+        MainFrame mainFrame = new MainFrame();
+       // ApplicationContext context = new AnnotationConfigApplicationContext(SpringContext.class);
+       // MainFrame mainFrame = (MainFrame) context.getBean("mainFrame");
+        //mainFrame.setArgs(args);
         mainFrame.init();
     }
 }

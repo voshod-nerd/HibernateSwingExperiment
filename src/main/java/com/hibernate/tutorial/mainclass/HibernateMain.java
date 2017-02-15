@@ -22,7 +22,6 @@ public class HibernateMain {
     @Autowired
     private SertifDAO sertifRep;
 
-   
     public List<Sertif> getAll() {
         return sertifRep.getAllSertif();
     }
@@ -77,6 +76,4 @@ public class HibernateMain {
 
     }
 
-  
-    
 }
