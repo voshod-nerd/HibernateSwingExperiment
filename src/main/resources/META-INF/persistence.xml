@@ -5,6 +5,7 @@
     <class>com.hibernate.tutorial.entity.Sertif</class>
     <class>com.hibernate.tutorial.entity.Doctor</class>
     <class>com.hibernate.tutorial.entity.SpisokVrach</class>
+    <class>com.hibernate.tutorial.entity.SkV015</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/hibernate5?zeroDateTimeBehavior=convertToNull"/>
       <property name="javax.persistence.jdbc.user" value="root"/>

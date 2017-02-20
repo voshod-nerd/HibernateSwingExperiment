@@ -4,13 +4,13 @@
         "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
 <hibernate-configuration>
     <session-factory>
-        <property name="connection.url">jdbc:mysql://localhost/hibernate5</property>
+        <property name="connection.url">jdbc:mysql://192.168.0.10/hibernate</property>
         <property name="connection.driver_class">com.mysql.jdbc.Driver</property>
  
         <property name="dialect">org.hibernate.dialect.MySQL5Dialect</property>
  
         <property name="connection.username">root</property>
-        <property name="connection.password"></property>
+        <property name="connection.password">19800123</property>
         <!-- DB schema will be updated if needed -->
         <property name="hbm2ddl.auto">update</property>
         <property name="show_sql">true</property>
