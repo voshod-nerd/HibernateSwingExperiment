@@ -10,7 +10,7 @@ import java.util.List;
 
 /**
  *
- * @author Талалаев
+ * @author 
  */
 public interface SkV015DAO {
      void save(SkV015 stock);

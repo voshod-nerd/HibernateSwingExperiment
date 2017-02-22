@@ -5,11 +5,25 @@
  */
 package com.hibernate.tutorial.ui;
 
+import com.hibernate.tutorial.ui.forcombobox.ComboItem;
+import com.hibernate.tutorial.config.SpringContext;
+import com.hibernate.tutorial.entity.SkV015;
+import com.hibernate.tutorial.entity.SpisokVrach;
+import com.hibernate.tutorial.mainclass.HibernateMain;
+import java.util.List;
+import javax.swing.JComboBox;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+ 
 /**
  *
- * @author Талалаев
+ * @author 
  */
 public class AddDoctorJDialog extends javax.swing.JDialog {
+
+    private HibernateMain hiber;
+    private ApplicationContext context;
+    private JComboBox<ComboItem> combo;
 
     /**
      * Creates new form AddDoctorJDialog
@@ -17,6 +31,22 @@ public class AddDoctorJDialog extends javax.swing.JDialog {
     public AddDoctorJDialog(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+
+        context = new AnnotationConfigApplicationContext(SpringContext.class);
+        hiber = (HibernateMain) context.getBean("HibernateMain");
+        
+        
+        List<SkV015> listSp= hiber.getSpisokSkV015();
+        for (SkV015 x:listSp) {
+            String key= x.getCode()+" | "+x.getName()+" | "+x.getHigh()+" | "+x.getDatebeg();
+            String value = x.getRecid().toString();
+           jSpecComboBox.addItem(new ComboItem(key,value));
+           
+        }
+      
+       
+        
+           
     }
 
     /**
@@ -30,21 +60,25 @@ public class AddDoctorJDialog extends javax.swing.JDialog {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
+        jComboBox1 = new javax.swing.JComboBox<>();
         jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        jIdDoctTextField = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
+        jLpuTextField = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
+        jPodrTextField = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        jTextField4 = new javax.swing.JTextField();
+        jPodrTextFiield = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        jTextField5 = new javax.swing.JTextField();
+        jFamTextField = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
-        jTextField6 = new javax.swing.JTextField();
+        jImTextField = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
-        jTextField7 = new javax.swing.JTextField();
-        jCheckBox1 = new javax.swing.JCheckBox();
+        jOtTextField = new javax.swing.JTextField();
+        jDoctCheckBox = new javax.swing.JCheckBox();
+        jLabel8 = new javax.swing.JLabel();
+        jSaveButton = new javax.swing.JButton();
+        jSpecComboBox = new javax.swing.JComboBox<>();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -59,38 +93,54 @@ public class AddDoctorJDialog extends javax.swing.JDialog {
         ));
         jScrollPane1.setViewportView(jTable1);
 
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel1.setText("Код доктора");
 
-        jTextField1.setText("jTextField1");
+        jIdDoctTextField.setText("jTextField1");
 
         jLabel2.setText("ЛПУ");
         jLabel2.setToolTipText("");
 
-        jTextField2.setText("jTextField2");
+        jLpuTextField.setText("jTextField2");
 
         jLabel3.setText("Подразделение");
 
-        jTextField3.setText("jTextField3");
+        jPodrTextField.setText("jTextField3");
 
         jLabel4.setText("Отделение");
 
-        jTextField4.setText("jTextField4");
+        jPodrTextFiield.setText("jTextField4");
 
         jLabel5.setText("Фамилия");
 
-        jTextField5.setText("jTextField5");
+        jFamTextField.setText("jTextField5");
 
         jLabel6.setText("Имя");
 
-        jTextField6.setText("jTextField6");
+        jImTextField.setText("jTextField6");
 
         jLabel7.setText("Отчество");
 
-        jTextField7.setText("jTextField7");
+        jOtTextField.setText("jTextField7");
 
-        jCheckBox1.setText("Признак доктора");
+        jDoctCheckBox.setText("Признак доктора");
+
+        jLabel8.setText("Специальность врача");
+
+        jSaveButton.setText("Добавить");
+        jSaveButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jSaveButtonMouseClicked(evt);
+            }
+        });
+        jSaveButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jSaveButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -98,32 +148,29 @@ public class AddDoctorJDialog extends javax.swing.JDialog {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, 306, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 306, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 306, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 306, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 306, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 306, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addComponent(jCheckBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addComponent(jLabel2)
-                                                .addComponent(jLabel3)
-                                                .addComponent(jLabel4)
-                                                .addComponent(jLabel5)
-                                                .addComponent(jLabel6)
-                                                .addComponent(jLabel7)))
-                                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                            .addGap(8, 8, 8)
-                                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 306, javax.swing.GroupLayout.PREFERRED_SIZE))))))))
-                .addContainerGap(503, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jSpecComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jOtTextField, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jImTextField, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jFamTextField, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jPodrTextFiield, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jPodrTextField, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLpuTextField, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jIdDoctTextField, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jSaveButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 314, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel5)
+                            .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jDoctCheckBox, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 201, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -131,38 +178,65 @@ public class AddDoctorJDialog extends javax.swing.JDialog {
                 .addGap(23, 23, 23)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jIdDoctTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jLpuTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel3)
                 .addGap(4, 4, 4)
-                .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPodrTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel4)
+                .addGap(7, 7, 7)
+                .addComponent(jPodrTextFiield, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(12, 12, 12)
-                .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel5)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jFamTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel6)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jImTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel7)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jCheckBox1)
-                .addContainerGap(65, Short.MAX_VALUE))
+                .addComponent(jOtTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jDoctCheckBox)
+                .addGap(6, 6, 6)
+                .addComponent(jLabel8)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jSpecComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jSaveButton, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jSaveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jSaveButtonActionPerformed
+        // TODO add your handling code here:
+        
+       
+    }//GEN-LAST:event_jSaveButtonActionPerformed
+
+    private void jSaveButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jSaveButtonMouseClicked
+        // TODO add your handling code here:
+        SpisokVrach vrach = new SpisokVrach();
+        vrach.setIdOtd(Integer.parseInt(jIdDoctTextField.getText()));
+        vrach.setFam(jFamTextField.getText());
+        vrach.setIm(jImTextField.getText());
+        vrach.setOt(jOtTextField.getText());
+        vrach.setDokt(jDoctCheckBox.isSelected());
+        vrach.setLpukod(Integer.parseInt(jLpuTextField.getText()));
+        
+        hiber.InputDoctorToDB(vrach);
+        
+        
+    }//GEN-LAST:event_jSaveButtonMouseClicked
 
     /**
      * @param args the command line arguments
@@ -207,7 +281,11 @@ public class AddDoctorJDialog extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JCheckBox jCheckBox1;
+    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JCheckBox jDoctCheckBox;
+    private javax.swing.JTextField jFamTextField;
+    private javax.swing.JTextField jIdDoctTextField;
+    private javax.swing.JTextField jImTextField;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -215,14 +293,14 @@ public class AddDoctorJDialog extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JTextField jLpuTextField;
+    private javax.swing.JTextField jOtTextField;
+    private javax.swing.JTextField jPodrTextField;
+    private javax.swing.JTextField jPodrTextFiield;
+    private javax.swing.JButton jSaveButton;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JComboBox<ComboItem> jSpecComboBox;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
-    private javax.swing.JTextField jTextField7;
     // End of variables declaration//GEN-END:variables
 }

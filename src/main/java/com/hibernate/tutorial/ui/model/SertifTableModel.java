@@ -29,14 +29,17 @@ public class SertifTableModel implements TableModel {
         this.listSertif = listSertif;
     }
 
+    @Override
     public int getRowCount() {
         return listSertif.size();
     }
 
+    @Override
     public int getColumnCount() {
-        return 8;
+        return 7;
     }
 
+    @Override
     public String getColumnName(int columnIndex) {
         switch (columnIndex) {
             case 0:
@@ -47,19 +50,19 @@ public class SertifTableModel implements TableModel {
                 return "date_end";
             case 3:
                 return "prvs";
+            
             case 4:
-                return "prvs_s";
-            case 5:
                 return "iddokt";
-            case 6:
+            case 5:
                 return "dateadd";
-            case 7:
+            case 6:
                 return "id";
 
         }
         return "";
     }
 
+    @Override
     public Class<?> getColumnClass(int columnIndex) {
         switch (columnIndex) {
             case 0:
@@ -70,18 +73,18 @@ public class SertifTableModel implements TableModel {
                 return Date.class;
             case 3:
                 return Integer.class;
+          
             case 4:
-                return String.class;
-            case 5:
                 return Integer.class;
-            case 6:
+            case 5:
                 return Date.class;
-            case 7:
+            case 6:
                 return Integer.class;
         }
         return Object.class;
     }
 
+    @Override
     public boolean isCellEditable(int rowIndex, int columnIndex) {
        return false;
     }
@@ -97,26 +100,28 @@ public class SertifTableModel implements TableModel {
                 return sertif.getDateEnd();
             case 3:
                 return sertif.getPrvs();
+           
             case 4:
-                return sertif.getPrvsS();
-            case 5:
                 return sertif.getIddokt().getIddokt();
-            case 6:
+            case 5:
                 return sertif.getDateadd();
-            case 7:
+            case 6:
                 return sertif.getId();
         }
         return Object.class;
     }
 
+    @Override
     public void setValueAt(Object aValue, int rowIndex, int columnIndex) {
         
     }
 
+    @Override
     public void addTableModelListener(TableModelListener listener) {
         listeners.add(listener);
     }
 
+    @Override
     public void removeTableModelListener(TableModelListener listener) {
        listeners.remove(listener);
     }

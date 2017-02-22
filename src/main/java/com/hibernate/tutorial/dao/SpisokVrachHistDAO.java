@@ -5,19 +5,20 @@
  */
 package com.hibernate.tutorial.dao;
 
-import com.hibernate.tutorial.entity.SpisokVrach;
+
+import com.hibernate.tutorial.entity.SpisokVrachHist;
 import java.util.List;
 
 /**
  *
- * @author Юыху
+ * @author 
  */
 public interface SpisokVrachHistDAO {
-      void save(SpisokVrach stock);
-	void update(SpisokVrach value);
-	void delete(SpisokVrach value);
-        List<SpisokVrach> getAllSpisokVrach();
-        SpisokVrach create(SpisokVrach value);
+      void save(SpisokVrachHist stock);
+	void update(SpisokVrachHist value);
+	void delete(SpisokVrachHist value);
+        List<SpisokVrachHist> getAllSpisokVrachHist();
+        SpisokVrachHist create(SpisokVrachHist value);
         
-	SpisokVrach findByIddokt(int value);
+	SpisokVrachHist findByIddokt(int value);
 }

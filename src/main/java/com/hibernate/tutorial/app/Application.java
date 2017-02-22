@@ -12,11 +12,9 @@ import com.hibernate.tutorial.ui.MainFrame;
  * @author Талалаев
  */
 public class Application {
+
     public static void main(String[] args) {
         MainFrame mainFrame = new MainFrame();
-       // ApplicationContext context = new AnnotationConfigApplicationContext(SpringContext.class);
-       // MainFrame mainFrame = (MainFrame) context.getBean("mainFrame");
-        //mainFrame.setArgs(args);
         mainFrame.init();
     }
 }

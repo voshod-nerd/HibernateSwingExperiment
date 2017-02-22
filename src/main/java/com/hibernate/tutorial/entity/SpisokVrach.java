@@ -12,6 +12,8 @@ import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -38,7 +40,6 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "SpisokVrach.findByIm", query = "SELECT s FROM SpisokVrach s WHERE s.im = :im"),
     @NamedQuery(name = "SpisokVrach.findByOt", query = "SELECT s FROM SpisokVrach s WHERE s.ot = :ot"),
     @NamedQuery(name = "SpisokVrach.findByDokt", query = "SELECT s FROM SpisokVrach s WHERE s.dokt = :dokt"),
-    @NamedQuery(name = "SpisokVrach.findByPrvs", query = "SELECT s FROM SpisokVrach s WHERE s.prvs = :prvs"),
     @NamedQuery(name = "SpisokVrach.findByDateVn", query = "SELECT s FROM SpisokVrach s WHERE s.dateVn = :dateVn"),
     @NamedQuery(name = "SpisokVrach.findByDateUv", query = "SELECT s FROM SpisokVrach s WHERE s.dateUv = :dateUv")})
 public class SpisokVrach implements Serializable {
@@ -62,8 +63,6 @@ public class SpisokVrach implements Serializable {
     private String ot;
     @Column(name = "DOKT")
     private Boolean dokt;
-    @Column(name = "PRVS")
-    private Integer prvs;
     @Column(name = "DATE_VN")
     @Temporal(TemporalType.DATE)
     private Date dateVn;
@@ -72,6 +71,9 @@ public class SpisokVrach implements Serializable {
     private Date dateUv;
     @OneToMany(mappedBy = "iddokt")
     private Collection<Sertif> sertifCollection;
+    @JoinColumn(name = "PRVS", referencedColumnName = "RECID")
+    @ManyToOne
+    private SkV015 prvs;
 
     public SpisokVrach() {
     }
@@ -144,14 +146,6 @@ public class SpisokVrach implements Serializable {
         this.dokt = dokt;
     }
 
-    public Integer getPrvs() {
-        return prvs;
-    }
-
-    public void setPrvs(Integer prvs) {
-        this.prvs = prvs;
-    }
-
     public Date getDateVn() {
         return dateVn;
     }
@@ -175,6 +169,14 @@ public class SpisokVrach implements Serializable {
 
     public void setSertifCollection(Collection<Sertif> sertifCollection) {
         this.sertifCollection = sertifCollection;
+    }
+
+    public SkV015 getPrvs() {
+        return prvs;
+    }
+
+    public void setPrvs(SkV015 prvs) {
+        this.prvs = prvs;
     }
 
     @Override

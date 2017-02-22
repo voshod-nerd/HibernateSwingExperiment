@@ -10,7 +10,7 @@ import java.util.List;
 
 /**
  *
- * @author Талалаев
+ * @author 
  */
 public interface SpisokVrachDAO {
         void save(SpisokVrach stock);

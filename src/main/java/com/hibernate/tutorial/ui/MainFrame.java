@@ -26,7 +26,7 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 
 /**
  *
- * @author Талалаев
+ * @author ????????
  */
 public class MainFrame extends javax.swing.JFrame {
 
@@ -49,9 +49,9 @@ public class MainFrame extends javax.swing.JFrame {
         context = new AnnotationConfigApplicationContext(SpringContext.class);
         hiber = (HibernateMain) context.getBean("HibernateMain");
 
-        TableModel model1 = new SpisokVrachTableModel(hiber.getAllSpisokVrach());
+        TableModel model1 = new SpisokVrachTableModel(hiber.getSpisokVrach());
         tblSpisokVrach = new JTable(model1);
-        TableModel model2 = new SertifTableModel(hiber.getAll());
+        TableModel model2 = new SertifTableModel(hiber.getSertifAll());
         tblSertif = new JTable(model2);
 
         tblSpisokVrach.setSize(new Dimension(900, 150));
@@ -64,9 +64,9 @@ public class MainFrame extends javax.swing.JFrame {
         jMenu1 = new JMenu("File");
         jMenuBar1.add(jMenu1);
 
-        jMenuItem1 = new JMenuItem("Добавить врача",
+        jMenuItem1 = new JMenuItem("Add Doctor",
                 KeyEvent.VK_T);
-        jMenuItem2 = new JMenuItem("Экспорт списка врачей в xml",
+        jMenuItem2 = new JMenuItem("Export to XML",
                 KeyEvent.VK_T);
         jMenu1.add(jMenuItem1);
         jMenu1.add(jMenuItem2);
@@ -113,6 +113,9 @@ public class MainFrame extends javax.swing.JFrame {
             public void windowClosed(java.awt.event.WindowEvent evt) {
                 formWindowClosed(evt);
             }
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
         });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -133,6 +136,11 @@ public class MainFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
         System.exit(0);
     }//GEN-LAST:event_formWindowClosed
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        // TODO add your handling code here:
+        System.exit(0);
+    }//GEN-LAST:event_formWindowClosing
 
     
    

@@ -23,6 +23,7 @@ public class SpisokVrachTableModel implements TableModel {
 
     private List<SpisokVrach> listDoctors;
 
+    @Override
     public void addTableModelListener(TableModelListener listener) {
         listeners.add(listener);
     }
@@ -32,14 +33,17 @@ public class SpisokVrachTableModel implements TableModel {
         this.listDoctors = listDoctors;
     }
 
+    @Override
     public int getRowCount() {
         return listDoctors.size();
     }
 
+    @Override
     public int getColumnCount() {
         return 11;
     }
 
+    @Override
     public String getColumnName(int columnIndex) {
         switch (columnIndex) {
             case 0:
@@ -68,6 +72,7 @@ public class SpisokVrachTableModel implements TableModel {
         return "";
     }
 
+    @Override
     public Class<?> getColumnClass(int columnIndex) {
         switch (columnIndex) {
             case 0:
@@ -97,10 +102,12 @@ public class SpisokVrachTableModel implements TableModel {
         return Object.class;
     }
 
+    @Override
     public boolean isCellEditable(int rowIndex, int columnIndex) {
         return false;
     }
 
+    @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
 
         SpisokVrach doctor = listDoctors.get(rowIndex);
@@ -134,10 +141,12 @@ public class SpisokVrachTableModel implements TableModel {
 
     }
 
+    @Override
     public void setValueAt(Object aValue, int rowIndex, int columnIndex) {
 
     }
 
+    @Override
     public void removeTableModelListener(TableModelListener listener) {
         listeners.remove(listener);
     }

@@ -10,7 +10,7 @@ import java.util.List;
 
 /**
  *
- * @author Талалаев
+ * @author 
  */
 public interface SertifDAO {
         void save(Sertif stock);

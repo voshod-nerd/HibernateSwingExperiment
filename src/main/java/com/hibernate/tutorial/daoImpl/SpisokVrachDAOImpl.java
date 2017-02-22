@@ -7,28 +7,46 @@ package com.hibernate.tutorial.daoImpl;
 import com.hibernate.tutorial.dao.SpisokVrachDAO;
 import com.hibernate.tutorial.entity.SpisokVrach;
 import java.util.List;
-import org.springframework.orm.hibernate4.support.HibernateDaoSupport;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+
 /**
  *
- * @author Талалаев
+ * @author 
  */
-public class SpisokVrachDAOImpl extends HibernateDaoSupport implements SpisokVrachDAO {
+@Repository("SpisokVrachRep")
+public class SpisokVrachDAOImpl implements SpisokVrachDAO  {
+
+   @Autowired
+    private SessionFactory sessionFactory;
+
+    
 
     public void save(SpisokVrach value) {
-        getHibernateTemplate().save(value);
+        Session session = this.getSessionFactory().getCurrentSession();
+		session.persist(value);
     }
 
     public void update(SpisokVrach value) {
-         getHibernateTemplate().update(value);
+       Session session = this.getSessionFactory().getCurrentSession();
+		session.update(value);
     }
 
     public void delete(SpisokVrach value) {
-        getHibernateTemplate().delete(value);
+       Session session = this.getSessionFactory().getCurrentSession();
+		SpisokVrach p = (SpisokVrach) session.load(SpisokVrach.class, value.getIddokt());
+		if(null != p){
+			session.delete(p);
+		}
     }
 
     public List<SpisokVrach> getAllSpisokVrach() {
-        List<SpisokVrach> result = (List<SpisokVrach>) getHibernateTemplate().find("from Sertif");
-       return result;
+       Session session = this.getSessionFactory().getCurrentSession();
+		List<SpisokVrach> listSpisokVrach = session.createQuery("from SpisokVrach").list();
+		
+		return listSpisokVrach;
     }
 
     public SpisokVrach create(SpisokVrach value) {
@@ -37,6 +55,20 @@ public class SpisokVrachDAOImpl extends HibernateDaoSupport implements SpisokVra
 
     public SpisokVrach findByIddokt(int value) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    /**
+     * @return the sessionFactory
+     */
+    public SessionFactory getSessionFactory() {
+        return sessionFactory;
+    }
+
+    /**
+     * @param sessionFactory the sessionFactory to set
+     */
+    public void setSessionFactory(SessionFactory sessionFactory) {
+        this.sessionFactory = sessionFactory;
     }
     
 }

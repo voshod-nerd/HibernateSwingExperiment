@@ -11,15 +11,12 @@ import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
-import org.springframework.stereotype.Service;
 
-import org.springframework.transaction.annotation.Transactional;
 
 /**
  *
- * @author Талалаев
+ * @author 
  */
 
 @Repository("SertifDao")
@@ -30,16 +27,19 @@ public class SertifDAOImpl implements SertifDAO {
 
     
 
+    @Override
     public void save(Sertif value) {
         Session session = this.getSessionFactory().getCurrentSession();
 		session.persist(value);
     }
 
+    @Override
     public void update(Sertif value) {
        Session session = this.getSessionFactory().getCurrentSession();
 		session.update(value);
     }
 
+    @Override
     public void delete(Sertif value) {
        Session session = this.getSessionFactory().getCurrentSession();
 		Sertif p = (Sertif) session.load(Sertif.class, value.getId());
@@ -48,6 +48,7 @@ public class SertifDAOImpl implements SertifDAO {
 		}
     }
 
+    @Override
     public List<Sertif> getAllSertif() {
        Session session = this.getSessionFactory().getCurrentSession();
 		List<Sertif> listSertif = session.createQuery("from Sertif").list();
@@ -55,10 +56,12 @@ public class SertifDAOImpl implements SertifDAO {
 		return listSertif;
     }
 
+    @Override
     public Sertif create(Sertif value) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
+    @Override
     public Sertif findByIddokt(int value) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }

@@ -34,8 +34,6 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Sertif.findByNSert", query = "SELECT s FROM Sertif s WHERE s.nSert = :nSert"),
     @NamedQuery(name = "Sertif.findByRegNum", query = "SELECT s FROM Sertif s WHERE s.regNum = :regNum"),
     @NamedQuery(name = "Sertif.findByDateEnd", query = "SELECT s FROM Sertif s WHERE s.dateEnd = :dateEnd"),
-    @NamedQuery(name = "Sertif.findByPrvs", query = "SELECT s FROM Sertif s WHERE s.prvs = :prvs"),
-    @NamedQuery(name = "Sertif.findByPrvsS", query = "SELECT s FROM Sertif s WHERE s.prvsS = :prvsS"),
     @NamedQuery(name = "Sertif.findByDateadd", query = "SELECT s FROM Sertif s WHERE s.dateadd = :dateadd"),
     @NamedQuery(name = "Sertif.findById", query = "SELECT s FROM Sertif s WHERE s.id = :id")})
 public class Sertif implements Serializable {
@@ -48,10 +46,6 @@ public class Sertif implements Serializable {
     @Column(name = "DATE_END")
     @Temporal(TemporalType.DATE)
     private Date dateEnd;
-    @Column(name = "PRVS")
-    private Integer prvs;
-    @Column(name = "PRVS_S")
-    private String prvsS;
     @Column(name = "DATEADD")
     @Temporal(TemporalType.DATE)
     private Date dateadd;
@@ -63,6 +57,9 @@ public class Sertif implements Serializable {
     @JoinColumn(name = "IDDOKT", referencedColumnName = "IDDOKT")
     @ManyToOne
     private SpisokVrach iddokt;
+    @JoinColumn(name = "PRVS", referencedColumnName = "RECID")
+    @ManyToOne
+    private SkV015 prvs;
 
     public Sertif() {
     }
@@ -95,22 +92,6 @@ public class Sertif implements Serializable {
         this.dateEnd = dateEnd;
     }
 
-    public Integer getPrvs() {
-        return prvs;
-    }
-
-    public void setPrvs(Integer prvs) {
-        this.prvs = prvs;
-    }
-
-    public String getPrvsS() {
-        return prvsS;
-    }
-
-    public void setPrvsS(String prvsS) {
-        this.prvsS = prvsS;
-    }
-
     public Date getDateadd() {
         return dateadd;
     }
@@ -133,6 +114,14 @@ public class Sertif implements Serializable {
 
     public void setIddokt(SpisokVrach iddokt) {
         this.iddokt = iddokt;
+    }
+
+    public SkV015 getPrvs() {
+        return prvs;
+    }
+
+    public void setPrvs(SkV015 prvs) {
+        this.prvs = prvs;
     }
 
     @Override

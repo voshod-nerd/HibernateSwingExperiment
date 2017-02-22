@@ -15,7 +15,7 @@ import org.springframework.stereotype.Repository;
 
 /**
  *
- * @author Талалаев
+ * @author 
  */
 @Repository("SkV015Dao")
 public class SkV015DAOImpl implements SkV015DAO {
@@ -26,16 +26,19 @@ public class SkV015DAOImpl implements SkV015DAO {
 
     
 
+    @Override
     public void save(SkV015 value) {
         Session session = this.getSessionFactory().getCurrentSession();
 		session.persist(value);
     }
 
+    @Override
     public void update(SkV015 value) {
        Session session = this.getSessionFactory().getCurrentSession();
 		session.update(value);
     }
 
+    @Override
     public void delete(SkV015 value) {
        Session session = this.getSessionFactory().getCurrentSession();
 		SkV015 p = (SkV015) session.load(SkV015.class, value.getRecid());
@@ -44,6 +47,7 @@ public class SkV015DAOImpl implements SkV015DAO {
 		}
     }
 
+    @Override
     public List<SkV015> getAllSkV015() {
        Session session = this.getSessionFactory().getCurrentSession();
 		List<SkV015> listSkV015 = session.createQuery("from SkV015").list();
@@ -51,10 +55,12 @@ public class SkV015DAOImpl implements SkV015DAO {
 		return listSkV015;
     }
 
+    @Override
     public SkV015 create(SkV015 value) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
+    @Override
     public SkV015 findByIddokt(int value) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }

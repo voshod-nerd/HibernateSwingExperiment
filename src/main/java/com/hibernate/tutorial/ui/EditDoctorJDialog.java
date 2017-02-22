@@ -7,7 +7,7 @@ package com.hibernate.tutorial.ui;
 
 /**
  *
- * @author Талалаев
+ * @author 
  */
 public class EditDoctorJDialog extends javax.swing.JDialog {
 
@@ -78,7 +78,7 @@ public class EditDoctorJDialog extends javax.swing.JDialog {
 
         jLabel1.setText("Код доктора");
 
-        jLabel2.setText("Код ЛПУ");
+        jLabel2.setText("ЛПУ");
 
         jLabel3.setText("Подразделение");
 
